@@ -10,7 +10,7 @@ import (
 	"github.com/irshadpalayadan/job-service-pg-based/graph"
 )
 
-const defaultPort = "8080"
+const defaultPort = "4000"
 
 func main() {
 	port := os.Getenv("PORT")

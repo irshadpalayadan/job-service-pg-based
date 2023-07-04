@@ -11,14 +11,29 @@ import (
 	"github.com/irshadpalayadan/job-service-pg-based/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+// CreateJobListing is the resolver for the createJobListing field.
+func (r *mutationResolver) CreateJobListing(ctx context.Context, input model.CreateJobListingInput) (*model.JobListing, error) {
+	panic(fmt.Errorf("not implemented: CreateJobListing - createJobListing"))
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// UpdateJobListing is the resolver for the updateJobListing field.
+func (r *mutationResolver) UpdateJobListing(ctx context.Context, id string, input model.UpdateJobListingInput) (*model.JobListing, error) {
+	panic(fmt.Errorf("not implemented: UpdateJobListing - updateJobListing"))
+}
+
+// DeleteJobListing is the resolver for the deleteJobListing field.
+func (r *mutationResolver) DeleteJobListing(ctx context.Context, id string) (*model.DeleteJobResponse, error) {
+	panic(fmt.Errorf("not implemented: DeleteJobListing - deleteJobListing"))
+}
+
+// Jobs is the resolver for the jobs field.
+func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
+	panic(fmt.Errorf("not implemented: Jobs - jobs"))
+}
+
+// Job is the resolver for the job field.
+func (r *queryResolver) Job(ctx context.Context, id string) (*model.JobListing, error) {
+	panic(fmt.Errorf("not implemented: Job - job"))
 }
 
 // Mutation returns MutationResolver implementation.

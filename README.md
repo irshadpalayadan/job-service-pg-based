@@ -7,5 +7,9 @@ steps to initialize the project
 3. printf '// +build tools\npackage tools\nimport (_ "github.com/99designs/gqlgen"\n _ "github.com/99designs/gqlgen/graphql/introspection")' | gofmt > tools.go
 4. go mod tidy
 5. go run github.com/99designs/gqlgen init
-5. go run server.go
+6. go run server.go
+7. remove the example todo code
+8. add the relevant schema changes
+9. go run github.com/99designs/gqlgen generate
+
 
