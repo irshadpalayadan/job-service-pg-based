@@ -1,4 +1,4 @@
-package graph
+package resolvers
 
 // This file will be automatically regenerated based on the schema, any resolver implementations
 // will be copied through when generating and any unknown code will be moved to the end.
@@ -8,6 +8,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/irshadpalayadan/job-service-pg-based/graph/generated"
 	"github.com/irshadpalayadan/job-service-pg-based/graph/model"
 )
 
@@ -26,21 +27,7 @@ func (r *mutationResolver) DeleteJobListing(ctx context.Context, id string) (*mo
 	panic(fmt.Errorf("not implemented: DeleteJobListing - deleteJobListing"))
 }
 
-// Jobs is the resolver for the jobs field.
-func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
-	panic(fmt.Errorf("not implemented: Jobs - jobs"))
-}
-
-// Job is the resolver for the job field.
-func (r *queryResolver) Job(ctx context.Context, id string) (*model.JobListing, error) {
-	panic(fmt.Errorf("not implemented: Job - job"))
-}
-
-// Mutation returns MutationResolver implementation.
-func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
-
-// Query returns QueryResolver implementation.
-func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
+// Mutation returns generated.MutationResolver implementation.
+func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
 type mutationResolver struct{ *Resolver }
-type queryResolver struct{ *Resolver }

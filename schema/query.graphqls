@@ -1,0 +1,4 @@
+type Query {
+  jobs: [JobListing!]!
+  job(id: ID!): JobListing!
+}
