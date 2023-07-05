@@ -19,12 +19,14 @@ func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
 
 // Job is the resolver for the job field.
 func (r *queryResolver) Job(ctx context.Context, id string) (*model.JobListing, error) {
+
+	result, _ := r.WriteDB.GetJobById(ctx, 123)
 	JobListing := &model.JobListing{
-		ID:          "hello",
-		Title:       "titlex",
-		Description: "descriptionx",
-		Company:     "companyx",
-		URL:         "urlx",
+		ID:          result.Id,
+		Title:       result.Title,
+		Description: result.Description,
+		Company:     result.Company,
+		URL:         result.Url,
 	}
 	return JobListing, nil
 }
