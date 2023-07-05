@@ -14,7 +14,7 @@ type DeleteJobResponse struct {
 }
 
 type JobListing struct {
-	ID          string `json:"_id"`
+	ID          string `json:"id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Company     string `json:"company"`

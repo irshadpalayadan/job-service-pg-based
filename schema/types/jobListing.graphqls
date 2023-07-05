@@ -1,6 +1,6 @@
 
 type JobListing {
-  _id: ID!
+  id: ID!
   title: String!
   description: String!
   company: String!

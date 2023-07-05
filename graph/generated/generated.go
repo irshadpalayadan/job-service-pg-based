@@ -114,7 +114,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobListing.Description(childComplexity), true
 
-	case "JobListing._id":
+	case "JobListing.id":
 		if e.complexity.JobListing.ID == nil {
 			break
 		}
@@ -345,7 +345,7 @@ scalar Upload`, BuiltIn: false},
 }`, BuiltIn: false},
 	{Name: "../../schema/types/jobListing.graphqls", Input: `
 type JobListing {
-  _id: ID!
+  id: ID!
   title: String!
   description: String!
   company: String!
@@ -541,8 +541,8 @@ func (ec *executionContext) fieldContext_DeleteJobResponse_deleteJobId(ctx conte
 	return fc, nil
 }
 
-func (ec *executionContext) _JobListing__id(ctx context.Context, field graphql.CollectedField, obj *model.JobListing) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobListing__id(ctx, field)
+func (ec *executionContext) _JobListing_id(ctx context.Context, field graphql.CollectedField, obj *model.JobListing) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobListing_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -572,7 +572,7 @@ func (ec *executionContext) _JobListing__id(ctx context.Context, field graphql.C
 	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobListing__id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobListing_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobListing",
 		Field:      field,
@@ -800,8 +800,8 @@ func (ec *executionContext) fieldContext_Mutation_createJobListing(ctx context.C
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_id":
-				return ec.fieldContext_JobListing__id(ctx, field)
+			case "id":
+				return ec.fieldContext_JobListing_id(ctx, field)
 			case "title":
 				return ec.fieldContext_JobListing_title(ctx, field)
 			case "description":
@@ -867,8 +867,8 @@ func (ec *executionContext) fieldContext_Mutation_updateJobListing(ctx context.C
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_id":
-				return ec.fieldContext_JobListing__id(ctx, field)
+			case "id":
+				return ec.fieldContext_JobListing_id(ctx, field)
 			case "title":
 				return ec.fieldContext_JobListing_title(ctx, field)
 			case "description":
@@ -993,8 +993,8 @@ func (ec *executionContext) fieldContext_Query_jobs(ctx context.Context, field g
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_id":
-				return ec.fieldContext_JobListing__id(ctx, field)
+			case "id":
+				return ec.fieldContext_JobListing_id(ctx, field)
 			case "title":
 				return ec.fieldContext_JobListing_title(ctx, field)
 			case "description":
@@ -1049,8 +1049,8 @@ func (ec *executionContext) fieldContext_Query_job(ctx context.Context, field gr
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_id":
-				return ec.fieldContext_JobListing__id(ctx, field)
+			case "id":
+				return ec.fieldContext_JobListing_id(ctx, field)
 			case "title":
 				return ec.fieldContext_JobListing_title(ctx, field)
 			case "description":
@@ -3140,8 +3140,8 @@ func (ec *executionContext) _JobListing(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobListing")
-		case "_id":
-			out.Values[i] = ec._JobListing__id(ctx, field, obj)
+		case "id":
+			out.Values[i] = ec._JobListing_id(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
