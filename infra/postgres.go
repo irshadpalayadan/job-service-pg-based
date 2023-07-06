@@ -10,7 +10,7 @@ import (
 func NewPostgresDB(needReadWriteDB bool) (writeDB *gorm.DB, readDB *gorm.DB, err error) {
 
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable connect_timeout=%d search_path=%s",
-		"localhost", "5432", "im_user", "postgres", "im_db", 5, "")
+		"localhost", "5432", "iam_user", "postgres", "iam_db", 5, "")
 
 	// Todo: add read write db config
 
@@ -22,7 +22,7 @@ func NewPostgresDB(needReadWriteDB bool) (writeDB *gorm.DB, readDB *gorm.DB, err
 
 	if needReadWriteDB == true {
 		dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable connect_timeout=%d search_path=%s",
-			"localhost", "5432", "im_user", "postgres", "im_db", 5, "")
+			"localhost", "5432", "iam_user", "postgres", "iam_db", 5, "")
 
 		// Todo: add read write db config
 
