@@ -21,7 +21,8 @@ func main() {
 		port = defaultPort
 	}
 
-	writeDB, _, _ := infra.NewPostgresDB(false)
+	logger, _ := infra.InitLogger()
+	writeDB, _, _ := infra.InitPostgresDB(false, logger)
 	repository := postgres.InitDBRepository(writeDB)
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &resolvers.Resolver{
