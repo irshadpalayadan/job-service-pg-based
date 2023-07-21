@@ -18,5 +18,5 @@ type JobListing struct {
 }
 
 type IJobListingRepository interface {
-	GetJobById(ctx context.Context, jobId int) (*JobListing, error)
+	GetJobById(ctx context.Context, jobId string) (*JobListing, error)
 }

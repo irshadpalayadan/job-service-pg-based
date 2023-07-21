@@ -13,14 +13,14 @@ import (
 )
 
 // Jobs is the resolver for the jobs field.
-func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
+func (r *queryResolver) Jobs(_ctx context.Context) ([]*model.JobListing, error) {
 	panic(fmt.Errorf("not implemented: Jobs - jobs"))
 }
 
 // Job is the resolver for the job field.
 func (r *queryResolver) Job(ctx context.Context, id string) (*model.JobListing, error) {
 
-	result, _ := r.WriteDB.GetJobById(ctx, 123)
+	result, _ := r.WriteDB.GetJobById(ctx, id)
 	JobListing := &model.JobListing{
 		ID:          result.Id,
 		Title:       result.Title,

@@ -2,22 +2,20 @@ package postgres
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/irshadpalayadan/job-service-pg-based/model"
 )
 
-func (repo *JobListingRepo) GetJobById(ctx context.Context, jobId int) (*model.JobListing, error) {
-	fmt.Printf("c######### all came GetJobById : ", repo)
-
+func (repo *JobListingRepo) GetJobById(_ctx context.Context, _jobId string) (*model.JobListing, error) {
+	repo.logger.Info("started getting job by given id")
 	var jobListingItem model.JobListing
-	result := repo.DB.Table("public.joblist").First(&jobListingItem, "id = ?", "1223")
+	result := repo.DB.Table("public.job_listing").First(&jobListingItem, "id = ?", _jobId)
 
-	fmt.Printf("result", result)
-	fmt.Printf("#######result", result.Error)
 	if result.Error != nil {
+		repo.logger.Error("error while getting job by given id")
 		return nil, result.Error
 	}
 
+	repo.logger.Info("completed getting job by given id")
 	return &jobListingItem, nil
 }

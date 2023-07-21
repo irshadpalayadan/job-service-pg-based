@@ -8,9 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func InitPostgresDB(needReadWriteDB bool, logger *zap.Logger) (writeDB *gorm.DB, readDB *gorm.DB, err error) {
+func InitPostgresDB(_needReadWriteDB bool, _logger *zap.Logger) (writeDB *gorm.DB, readDB *gorm.DB, err error) {
 
-	logger.Info("starting initializing the database")
+	_logger.Info("starting initializing the database")
 
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable connect_timeout=%d search_path=%s",
 		"localhost", "5432", "iam_user", "postgres", "iam_db", 5, "")
@@ -19,20 +19,20 @@ func InitPostgresDB(needReadWriteDB bool, logger *zap.Logger) (writeDB *gorm.DB,
 
 	writeDB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		logger.Error("Error while connecting to the write database")
+		_logger.Error("Error while connecting to the write database")
 		panic(err)
 	}
 
 	postgresWDB, err := writeDB.DB()
 	if err != nil {
-		logger.Error("Error while accessing the write db instance ")
+		_logger.Error("Error while accessing the write db instance ")
 		panic(err)
 	}
 
 	postgresWDB.SetMaxOpenConns(2)
 	postgresWDB.SetMaxIdleConns(1)
 
-	if needReadWriteDB {
+	if _needReadWriteDB {
 		dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable connect_timeout=%d search_path=%s",
 			"localhost", "5432", "iam_user", "postgres", "iam_db", 5, "")
 
@@ -40,13 +40,13 @@ func InitPostgresDB(needReadWriteDB bool, logger *zap.Logger) (writeDB *gorm.DB,
 
 		readDB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 		if err != nil {
-			logger.Error("Error while connecting to the read database")
+			_logger.Error("Error while connecting to the read database")
 			panic(err)
 		}
 
 		postgresRDB, err := readDB.DB()
 		if err != nil {
-			logger.Error("Error while accessing the read db instance ")
+			_logger.Error("Error while accessing the read db instance ")
 			panic(err)
 		}
 
@@ -54,6 +54,6 @@ func InitPostgresDB(needReadWriteDB bool, logger *zap.Logger) (writeDB *gorm.DB,
 		postgresRDB.SetMaxIdleConns(1)
 	}
 
-	logger.Info("initializing the database completed successfully")
+	_logger.Info("initializing the database completed successfully")
 	return writeDB, readDB, err
 }
