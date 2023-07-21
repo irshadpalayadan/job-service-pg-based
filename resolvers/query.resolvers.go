@@ -8,8 +8,10 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/99designs/gqlgen/graphql"
 	"github.com/irshadpalayadan/job-service-pg-based/graph/generated"
 	"github.com/irshadpalayadan/job-service-pg-based/graph/model"
+	"github.com/irshadpalayadan/job-service-pg-based/utils"
 )
 
 // Jobs is the resolver for the jobs field.
@@ -18,9 +20,15 @@ func (r *queryResolver) Jobs(_ctx context.Context) ([]*model.JobListing, error) 
 }
 
 // Job is the resolver for the job field.
-func (r *queryResolver) Job(ctx context.Context, id string) (*model.JobListing, error) {
+func (res *queryResolver) Job(_ctx context.Context, id string) (*model.JobListing, error) {
+	res.Logger.Info("started getting Job details in resolver")
+	result, err := res.WriteDB.GetJobById(_ctx, id)
+	if err != nil {
+		res.Logger.Info("Empty Job details found while getting in resolver")
+		graphql.AddError(_ctx, utils.ConstructErrorResponse(utils.CAN_NOT_FETCH_BY_ID, "The requested job record doesn't present", res.Logger))
+		return nil, nil
+	}
 
-	result, _ := r.WriteDB.GetJobById(ctx, id)
 	JobListing := &model.JobListing{
 		ID:          result.Id,
 		Title:       result.Title,
@@ -28,6 +36,8 @@ func (r *queryResolver) Job(ctx context.Context, id string) (*model.JobListing, 
 		Company:     result.Company,
 		URL:         result.Url,
 	}
+
+	res.Logger.Info("completed getting Job details in resolver")
 	return JobListing, nil
 }
 

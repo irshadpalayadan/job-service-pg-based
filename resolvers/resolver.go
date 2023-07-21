@@ -1,6 +1,9 @@
 package resolvers
 
-import "github.com/irshadpalayadan/job-service-pg-based/model"
+import (
+	"github.com/irshadpalayadan/job-service-pg-based/model"
+	"go.uber.org/zap"
+)
 
 // This file will not be regenerated automatically.
 //
@@ -8,4 +11,5 @@ import "github.com/irshadpalayadan/job-service-pg-based/model"
 
 type Resolver struct {
 	WriteDB model.IDBRepository
+	Logger  *zap.Logger
 }
