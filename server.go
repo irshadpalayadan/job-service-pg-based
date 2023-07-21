@@ -12,6 +12,7 @@ import (
 	"github.com/irshadpalayadan/job-service-pg-based/infra"
 	"github.com/irshadpalayadan/job-service-pg-based/repository/postgres"
 	"github.com/irshadpalayadan/job-service-pg-based/resolvers"
+	"github.com/irshadpalayadan/job-service-pg-based/utils"
 )
 
 const defaultPort = "4000"
@@ -32,6 +33,7 @@ func main() {
 		WriteDB: repository,
 		Logger:  logger,
 	}}))
+	srv.SetErrorPresenter(utils.GqlErrorRespMiddleware(logger))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
