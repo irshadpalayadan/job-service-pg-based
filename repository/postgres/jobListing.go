@@ -9,7 +9,7 @@ import (
 func (repo *JobListingRepo) GetJobById(_ctx context.Context, _jobId string) (*model.JobListing, error) {
 	repo.logger.Info("started getting job by given id")
 	var jobListingItem model.JobListing
-	result := repo.DB.Table("public.job_listing").First(&jobListingItem, "id = ?", _jobId)
+	result := repo.DB.Table("test_schema.job_listing").First(&jobListingItem, "id = ?", _jobId)
 
 	if result.Error != nil {
 		repo.logger.Error("error while getting job by given id")
