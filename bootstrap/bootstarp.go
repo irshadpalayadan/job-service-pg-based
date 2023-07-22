@@ -1,4 +1,4 @@
-package config
+package bootstrap
 
 import (
 	"go.uber.org/zap"

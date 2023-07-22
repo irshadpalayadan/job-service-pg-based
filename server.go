@@ -7,7 +7,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/irshadpalayadan/job-service-pg-based/config"
+	"github.com/irshadpalayadan/job-service-pg-based/bootstrap"
 	"github.com/irshadpalayadan/job-service-pg-based/graph/generated"
 	"github.com/irshadpalayadan/job-service-pg-based/infra"
 	"github.com/irshadpalayadan/job-service-pg-based/repository/postgres"
@@ -27,7 +27,7 @@ func main() {
 	writeDB, _, _ := infra.InitPostgresDB(false, logger)
 	repository := postgres.InitDBRepository(writeDB, logger)
 
-	config.InitBootstrap(writeDB, logger)
+	bootstrap.InitBootstrap(writeDB, logger)
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &resolvers.Resolver{
 		WriteDB: repository,
